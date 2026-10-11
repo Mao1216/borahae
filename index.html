@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Kiara 💜</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a0033 0%, #4c0099 100%);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        .heart {
+            position: absolute;
+            font-size: 24px;
+            animation: floatUp 4s ease-in forwards;
+            opacity: 0;
+            pointer-events: none;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+        }
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite alternate;
+            pointer-events: none;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4 relative">
+    <!-- Estrellas de fondo -->
+    <div id="stars-container"></div>
+
+    <div class="glass-panel p-8 rounded-3xl max-w-md w-full text-center relative z-10 transition-transform duration-500 hover:scale-105">
+        <h1 class="text-4xl font-bold mb-4 text-purple-300 tracking-wider font-serif">¡Para Kiara! 💜✨</h1>
+        <p class="text-lg mb-6 text-purple-100">Vivir este momento contigo fue un sueño hecho realidad...</p>
+
+        <div class="relative inline-block mb-6">
+            <div class="absolute -inset-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl blur opacity-75"></div>
+            <img src="IMG_6325_2.jpg" alt="Nosotros en el concierto" class="relative w-64 h-64 object-cover rounded-2xl border-2 border-purple-300 shadow-xl">
+        </div>
+
+        <div class="glass-panel p-4 rounded-xl mb-6">
+            <p class="text-md leading-relaxed text-purple-50">
+                Cantar, gritar y vivir el océano morado a tu lado es algo que nunca voy a olvidar. 
+                Gracias por ser mi compañera en esta noche mágica.
+            </p>
+            <p class="text-2xl font-bold mt-4 text-pink-300 drop-shadow-md">Te amo muchísimo,<br>Kiara Borahae 💜</p>
+        </div>
+
+        <button id="love-btn" class="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-500 hover:to-pink-400 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition hover:-translate-y-1 hover:shadow-purple-500/50 text-lg">
+            ¡Presiona aquí! 💖
+        </button>
+        <p class="mt-4 text-sm text-purple-300 opacity-70">Siempre juntos 💜</p>
+    </div>
+
+    <script>
+        // Crear estrellas
+        const starsContainer = document.getElementById('stars-container');
+        for(let i=0; i<50; i++) {
+            let star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.top = Math.random() * 100 + 'vh';
+            star.style.animationDelay = Math.random() * 2 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Lluvia de corazones
+        document.getElementById('love-btn').addEventListener('click', function() {
+            for(let i=0; i<30; i++) {
+                setTimeout(() => {
+                    let heart = document.createElement('div');
+                    heart.innerHTML = '💜';
+                    heart.className = 'heart';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.top = '100vh';
+                    heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => { heart.remove(); }, 4000);
+                }, i * 100);
+            }
+        });
+    </script>
+</body>
+</html>
